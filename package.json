@@ -1,7 +1,7 @@
 {
     "name": "webpack-inicial",
     "version": "1.0.0",
-    "description": "DOM Array Methods",
+    "description": "Speech Text Reader",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
