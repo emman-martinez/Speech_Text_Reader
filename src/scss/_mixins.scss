@@ -22,27 +22,24 @@
     }
 }
 
-@mixin boton($claro, $boton) {
+@mixin boton($fondo, $texto) {
     cursor: pointer;
-    background-color: $boton;
-    box-shadow: $boxShadow;
-    color: $claro;
-    border: 2px solid $boton;
-    display: block;
+    background-color: $fondo;
+    border: 2px solid $fondo;
+    border-radius: 4px;
+    color: $texto;
     font-size: 16px;
-    margin: 10px 0 30px;
     padding: 10px;
-    width: 100%;
-    border-radius: 5px;
     outline: none;
-    transition: background-color .5s ease-in-out;
+    font-weight: bold;
+    transition: background-color .5s ease;
     &:active {
         transform: scale(0.98);
     }
     &:hover {
-        background-color: $claro;
-        border: 2px solid $boton;
-        color: $boton;
+        background-color: $texto;
+        color: $fondo;
+        border: 2px solid $fondo;
     }
 }
 
