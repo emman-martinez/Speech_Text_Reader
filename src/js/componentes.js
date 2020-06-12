@@ -67,20 +67,80 @@ const createBox = (item) => {
         <img src="${image}" alt="${text}"/>
         <p class="info">${text}</p>
     `;
+    box.addEventListener('click', () => {
+        setTextMessage(text);
+        speakText();
+        // Add active effect
+        box.classList.add('active');
+        setTimeout(() => {
+            box.classList.remove('active');
+        }, 800);
+
+    });
     // @todo - speak event
     main.appendChild(box);
 }
 
 data.forEach((item) => createBox(item));
 
+// Init speech synth
+const message = new SpeechSynthesisUtterance();
 
+// Store voices
+let voices = [];
+
+// Get Voices
+const getVoices = () => {
+    voices = speechSynthesis.getVoices();
+    voices.forEach((voice) => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.innerText = `${voice.name} ${voice.lang}`;
+        voicesSelect.appendChild(option);
+    });
+};
+
+// Set text
+const setTextMessage = (text) => {
+    message.text = text;
+};
+// Speak text
+const speakText = () => {
+    speechSynthesis.speak(message);
+};
+// Set voice
+const setVoice = (e) => {
+    message.voice = voices.find((voice) => {
+        return voice.name === e.target.value;
+    });
+}; 
 /* ************************************************************ */
 const eventos = () => {
     console.log('Event Listeners');
+    // Voices changed
+    speechSynthesis.addEventListener('voiceschanged', getVoices);
+    // Toggle text box
+    toggleBtn.addEventListener('click', () => {
+        document.getElementById('text-box').classList.toggle('show');
+    });
+    // Close button
+    closeBtn.addEventListener('click', () => {
+        document.getElementById('text-box').classList.remove('show');
+    });
+    // Change voice
+    voicesSelect.addEventListener('change', setVoice);
+    // Read text button
+    readBtn.addEventListener('click', () => {
+        setTextMessage(textarea.value);
+        speakText();
+    });
+
+    getVoices();
 };
 /* ************************************************************ */
 const init = () => {
     console.log('Speech Text Reader');
+    eventos();
 };
 /* ************************************************************ */
 export {

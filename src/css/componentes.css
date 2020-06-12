@@ -59,6 +59,10 @@ select:focus {
   transition: all 1s ease-in-out;
 }
 
+.text-box h3 {
+  color: #FFFFFF;
+}
+
 .text-box select {
   background-color: darksalmon;
   border: 0;
@@ -102,6 +106,10 @@ select:focus {
 
 .text-box .close:hover {
   background-color: gray;
+}
+
+.text-box.show {
+  transform: translate(-50%, 0);
 }
 
 main {

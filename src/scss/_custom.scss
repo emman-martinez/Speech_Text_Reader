@@ -39,6 +39,9 @@ select:focus {
     padding: 20px;
     border-radius: 5px;
     transition: all 1s ease-in-out;
+    h3 {
+        color: $claro;
+    }
     select {
         background-color: darksalmon;
         border: 0;
@@ -78,6 +81,9 @@ select:focus {
        &:hover {
            background-color: gray;
        }
+    }
+    &.show {
+        transform: translate(-50%, 0);
     }
 }
 
